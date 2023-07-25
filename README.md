@@ -1,5 +1,5 @@
 # Team 5 
-- Roberto Carcolé
+- Robert Carcolé
 - Jesús Sepulveda
 - Manuel Antonio Rybakin
 ## Diagramas ER modeloRelacional DDL 07 2023
