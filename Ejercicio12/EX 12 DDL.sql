@@ -6,14 +6,13 @@ CREATE TABLE trabajadores(
     codigo_trabajador int,
     nombre varchar(10),
     apellidos varchar(20),
-    hora_proyecto varchar(4),
     PRIMARY KEY (DNI)
 );
 
 CREATE TABLE empresas(
 	CIF varchar(10),
     codigo_interno int,
-    nombre varchar(10),
+    nombre varchar(30),
     dirección varchar(30),
     teléfono int,
     PRIMARY KEY (CIF)
@@ -37,12 +36,13 @@ CREATE TABLE proyectos(
 );
 
 CREATE TABLE profesiones(
+	id int auto_increment,
 	codigo_profesion int,
     descripcion varchar(50),
     esAdministradorDiseño boolean NULL DEFAULT FALSE,
     DNI_trabajadores varchar(9),
     ID_proyectos int,
-    PRIMARY KEY (codigo_profesion),
+    PRIMARY KEY (id),
     FOREIGN KEY (DNI_trabajadores) REFERENCES trabajadores(DNI)
     ON DELETE cascade
     ON UPDATE cascade,
@@ -52,9 +52,11 @@ CREATE TABLE profesiones(
 );
 
 CREATE TABLE participar(
+	id int auto_increment,
+	hora_proyecto varchar(5),
 	DNI_trabajadores varchar(9),
     ID_proyectos int,
-    PRIMARY KEY (DNI_trabajadores, ID_proyectos),
+    PRIMARY KEY (id),
     FOREIGN KEY (DNI_trabajadores) REFERENCES trabajadores(DNI)
     ON DELETE cascade
     ON UPDATE cascade,
@@ -64,9 +66,10 @@ CREATE TABLE participar(
 );
 
 CREATE TABLE realizar(
+	id int auto_increment,
 	CIF_empresas varchar(10),
     ID_proyectos int,
-    PRIMARY KEY (CIF_empresas, ID_proyectos),
+    PRIMARY KEY (id),
     FOREIGN KEY (CIF_empresas) REFERENCES empresas(CIF)
     ON DELETE cascade
     ON UPDATE cascade,
