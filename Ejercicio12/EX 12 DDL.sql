@@ -20,7 +20,7 @@ CREATE TABLE empresas(
 
 CREATE TABLE proyectos(
 	ID_proyecto int,
-    fecha_inicio date,
+    fecha_inicio date unique,
     fecha_fin date,
     fecha_prevista date,
     dia int,

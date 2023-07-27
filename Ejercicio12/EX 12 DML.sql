@@ -19,9 +19,9 @@ UPDATE ejercicio12.empresas SET codigo_interno=codigo_interno+20 LIMIT 2;
 SELECT * FROM ejercicio12.proyectos;
 REPLACE INTO ejercicio12.proyectos (ID_proyecto, fecha_inicio, fecha_fin, fecha_prevista, dia, CIF_empresas) VALUES 
 (124, '2020-05-12', '2021-11-05', '2021-11-10', '12', '4512545FDC'),
-(510, '2019-08-20', '2022-12-25', '2022-11-30', '20', '3512987ABC'),
-(50, '2023-10-08', '2025-07-30', '2025-08-10', '08', '5412587AFG');
-INSERT INTO ejercicio12.proyectos VALUES (200, '2020-05-12', '2022-07-05', '2022-10-10', '12', 124, '7894561LMN');
+(510, '2019-08-20', '2022-12-25', '2022-11-30', '20', '4512545FDC'),
+(50, '2023-10-08', '2025-07-30', '2025-08-10', '08', '4512545FDC');
+REPLACE INTO ejercicio12.proyectos VALUES (200, '2020-05-12', '2022-07-05', '2022-10-10', '12', 124, '4512545FDC');
 DELETE FROM ejercicio12.proyectos WHERE ID_proyecto='124';
 
 SELECT * FROM ejercicio12.profesiones;
@@ -31,7 +31,7 @@ INSERT INTO ejercicio12.profesiones (codigo_profesion, descripcion, DNI_trabajad
 (01, 'programador', '89763214X', 50),
 (01, 'programador', '74568932A', 510),
 (20, 'analista', '45678901C', 200);
-UPDATE ejercicio12.profesiones SET codigo_profesion=22 WHERE id=1 OR id=5;
+UPDATE ejercicio12.profesiones SET codigo_profesion=22 WHERE id=6 OR id=10;
 DELETE FROM ejercicio12.profesiones WHERE id=2;
 
 SELECT * FROM ejercicio12.participar;
@@ -44,8 +44,10 @@ INSERT INTO ejercicio12.participar (hora_proyecto, DNI_trabajadores, ID_proyecto
 DELETE FROM ejercicio12.participar WHERE id=2;
 
 SELECT * FROM ejercicio12.realizar;
-INSERT INTO ejercicio12.realizar (CIF_empresas, ID_proyectos) VALUES 
+REPLACE INTO ejercicio12.realizar (CIF_empresas, ID_proyectos) VALUES 
 ('4512545FDC', 124),
 ('7894561LMN', 200),
 ('3512987ABC', 510),
+('3512987ABC', 200),
 ('5412587AFG', 50);
+DELETE FROM ejercicio12.realizar WHERE id=8
