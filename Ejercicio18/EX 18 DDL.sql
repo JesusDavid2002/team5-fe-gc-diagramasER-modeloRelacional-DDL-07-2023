@@ -54,12 +54,12 @@ CREATE TABLE pisos (
 );
 
 CREATE TABLE garajes (
-	código_local int,
+	código_garaje int,
     número_garaje int,
     planta int,
     código_inmuebles int,
     código_piso int,
-    PRIMARY KEY (código_local, código_inmuebles),
+    PRIMARY KEY (código_garaje, código_inmuebles),
     FOREIGN KEY (código_inmuebles) REFERENCES inmuebles(código_inmueble)
     ON DELETE cascade
     ON UPDATE cascade,
@@ -68,28 +68,31 @@ CREATE TABLE garajes (
     ON UPDATE cascade
 );
 
-CREATE TABLE titulares (
-	titularID int,
-    nombre varchar (15),
-    apellidos varchar (20),
-    PRIMARY KEY (titularID)
-);
-
 CREATE TABLE comprar (
 	código_compra int,
     fecha date,
     valor_compra float,
     DNI_clientes varchar(9),
     código_inmuebles int,
-    titularID int,
     PRIMARY KEY (código_compra),
     FOREIGN KEY (DNI_clientes) REFERENCES clientes(DNI)
     ON DELETE cascade
     ON UPDATE cascade,
     FOREIGN KEY (código_inmuebles) REFERENCES inmuebles(código_inmueble)
     ON DELETE cascade
+    ON UPDATE cascade
+);
+
+CREATE TABLE alquileres (
+	numero_alquiler int,
+    agente_inmobiliario varchar(15),
+    DNI_clientes varchar(9),
+    código_inmuebles int,
+    PRIMARY KEY (numero_alquiler),
+    FOREIGN KEY (DNI_clientes) REFERENCES clientes(DNI)
+    ON DELETE cascade
     ON UPDATE cascade,
-    FOREIGN KEY (titularID) REFERENCES titulares(titularID)
+    FOREIGN KEY (código_inmuebles) REFERENCES inmuebles(código_inmueble)
     ON DELETE cascade
     ON UPDATE cascade
 );
@@ -100,14 +103,8 @@ CREATE TABLE pagos (
     mes int,
     valor float,
     número_alquiler int,
-    nombre_agente varchar(15),
-    DNI_clientes varchar(9),
-    código_inmuebles int,
     PRIMARY KEY (código_pago_alquiler),
-    FOREIGN KEY (DNI_clientes) REFERENCES clientes(DNI)
-    ON DELETE cascade
-    ON UPDATE cascade,
-    FOREIGN KEY (código_inmuebles) REFERENCES inmuebles(código_inmueble)
+    FOREIGN KEY (número_alquiler) REFERENCES alquileres(numero_alquiler)
     ON DELETE cascade
     ON UPDATE cascade
 );
