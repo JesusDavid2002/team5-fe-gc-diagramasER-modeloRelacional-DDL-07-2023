@@ -2,7 +2,7 @@
 
 CREATE DATABASE ejercicio06;
 USE ejercicio06;
--- DROP DATABASE ejercicio06;
+
 CREATE TABLE socios(
 	DNI varchar(9),
     nombre varchar(20),
