@@ -8,6 +8,8 @@ CREATE TABLE Asignaturas (
     codigo_interno_asignatura INT,
     PRIMARY KEY (codigo_interno),
     FOREIGN KEY (codigo_interno_asignatura) REFERENCES Asignaturas(codigo_interno)
+    ON DELETE cascade
+    ON UPDATE cascade
 );
 
 CREATE TABLE Profesores (
@@ -24,6 +26,8 @@ CREATE TABLE Profesores (
     codigo_interno_asignatura INT,
     PRIMARY KEY (dni),
     FOREIGN KEY (codigo_interno_asignatura) REFERENCES Asignaturas(codigo_interno)
+    ON DELETE cascade
+    ON UPDATE cascade
 );
 
 CREATE TABLE Ciclos (
@@ -38,16 +42,24 @@ CREATE TABLE Cursos (
     dni VARCHAR(9),
     codigo_interno_curso INT,
     PRIMARY KEY (id_curso),
-    FOREIGN KEY (dni) REFERENCES Profesores(dni),
+    FOREIGN KEY (dni) REFERENCES Profesores(dni)
+    ON DELETE cascade
+    ON UPDATE cascade,
     FOREIGN KEY (codigo_interno_curso) REFERENCES Ciclos(codigo_interno)
+    ON DELETE cascade
+    ON UPDATE cascade
 );
 
 CREATE TABLE Ciclos_asignaturas (
     codigo_interno_asignatura INT NOT NULL,
     codigo_interno_ciclo INT NOT NULL,
     PRIMARY KEY (codigo_interno_asignatura, codigo_interno_ciclo),
-    FOREIGN KEY (codigo_interno_asignatura) REFERENCES Asignaturas(codigo_interno),
+    FOREIGN KEY (codigo_interno_asignatura) REFERENCES Asignaturas(codigo_interno)
+    ON DELETE cascade
+    ON UPDATE cascade,
     FOREIGN KEY (codigo_interno_ciclo) REFERENCES Ciclos(codigo_interno)
+    ON DELETE cascade
+    ON UPDATE cascade
 );
 
 CREATE TABLE Horarios (
@@ -71,9 +83,15 @@ CREATE TABLE Aulas_asignaturas_horarios (
     nombre_aula VARCHAR(50) NOT NULL,
     numero_aula INT NOT NULL,
     PRIMARY KEY (codigo_interno_asignatura, id_horario, nombre_aula, numero_aula),
-    FOREIGN KEY (codigo_interno_asignatura) REFERENCES Asignaturas(codigo_interno),
-    FOREIGN KEY (id_horario) REFERENCES Horarios(id_horario),
+    FOREIGN KEY (codigo_interno_asignatura) REFERENCES Asignaturas(codigo_interno)
+    ON DELETE cascade
+    ON UPDATE cascade,
+    FOREIGN KEY (id_horario) REFERENCES Horarios(id_horario)
+    ON DELETE cascade
+    ON UPDATE cascade,
     FOREIGN KEY (nombre_aula, numero_aula) REFERENCES Aulas(nombre, numero)
+    ON DELETE cascade
+    ON UPDATE cascade
 );
 
 

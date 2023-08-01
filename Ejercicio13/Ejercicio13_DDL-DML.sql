@@ -25,6 +25,8 @@ CREATE TABLE Cocineros (
     años_servicio INT,
     PRIMARY KEY (ID_cocinero, DNI_empleados),
     FOREIGN KEY (DNI_empleados) REFERENCES Empleados(DNI)
+    ON DELETE cascade
+    ON UPDATE cascade
 );
 
 CREATE TABLE Pinches (
@@ -33,8 +35,12 @@ CREATE TABLE Pinches (
     fecha_nacimiento DATE,
     ID_cocinero INT NOT NULL,
     PRIMARY KEY (ID_pinches, DNI_empleados),
-    FOREIGN KEY (DNI_empleados) REFERENCES Empleados(DNI),
+    FOREIGN KEY (DNI_empleados) REFERENCES Empleados(DNI)
+    ON DELETE cascade
+    ON UPDATE cascade,
     FOREIGN KEY (ID_cocinero) REFERENCES Cocineros(ID_cocinero)
+    ON DELETE cascade
+    ON UPDATE cascade
 );
 
 CREATE TABLE Platos (
@@ -52,6 +58,8 @@ CREATE TABLE Ingredientes (
     platoID INT,
     PRIMARY KEY (ingredientesID),
     FOREIGN KEY (platoID) REFERENCES Platos(platoID)
+    ON DELETE cascade
+    ON UPDATE cascade
 );
 
 CREATE TABLE Estanterias (
@@ -62,22 +70,32 @@ CREATE TABLE Estanterias (
     almacenID INT,
     PRIMARY KEY (estanteriaID),
     FOREIGN KEY (almacenID) REFERENCES Almacenes(almacenID)
+    ON DELETE cascade
+    ON UPDATE cascade
 );
 
 CREATE TABLE Preparar_platos (
     ID_cocinero INT NOT NULL,
     platoID INT NOT NULL,
     PRIMARY KEY (ID_cocinero, platoID),
-    FOREIGN KEY (ID_cocinero) REFERENCES Cocineros(ID_cocinero),
+    FOREIGN KEY (ID_cocinero) REFERENCES Cocineros(ID_cocinero)
+    ON DELETE cascade
+    ON UPDATE cascade,
     FOREIGN KEY (platoID) REFERENCES Platos(platoID)
+    ON DELETE cascade
+    ON UPDATE cascade
 );
 
 CREATE TABLE Estanteria_ingrediente (
     ingredientesID INT NOT NULL,
     estanteriaID INT NOT NULL,
     PRIMARY KEY (ingredientesID, estanteriaID),
-    FOREIGN KEY (ingredientesID) REFERENCES Ingredientes(ingredientesID),
+    FOREIGN KEY (ingredientesID) REFERENCES Ingredientes(ingredientesID)
+    ON DELETE cascade
+    ON UPDATE cascade,
     FOREIGN KEY (estanteriaID) REFERENCES Estanterias(estanteriaID)
+    ON DELETE cascade
+    ON UPDATE cascade
 );
 
 -- DML

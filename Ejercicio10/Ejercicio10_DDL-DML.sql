@@ -17,6 +17,8 @@ CREATE TABLE Partidos (
     LigaID INT,
     PRIMARY KEY (PartidoID),
     FOREIGN KEY (LigaID) REFERENCES LigasFutbol(LigaID)
+    ON DELETE cascade
+    ON UPDATE cascade
 );
 
 CREATE TABLE Equipos (
@@ -37,6 +39,8 @@ CREATE TABLE Jugadores (
     EquipoID INT,
     PRIMARY KEY (DNI),
     FOREIGN KEY (EquipoID) REFERENCES Equipos(EquipoID)
+    ON DELETE cascade
+    ON UPDATE cascade
 );
 
 CREATE TABLE Entrenadores (
@@ -47,14 +51,20 @@ CREATE TABLE Entrenadores (
     EquipoID INT,
     PRIMARY KEY (DNI),
     FOREIGN KEY (EquipoID) REFERENCES Equipos(EquipoID)
+    ON DELETE cascade
+    ON UPDATE cascade
 );
 
 CREATE TABLE JugarPartidos (
     PartidoID INT NOT NULL,
     EquipoID INT NOT NULL,
     PRIMARY KEY (PartidoID, EquipoID),
-    FOREIGN KEY (PartidoID) REFERENCES Partidos(PartidoID),
+    FOREIGN KEY (PartidoID) REFERENCES Partidos(PartidoID)
+    ON DELETE cascade
+    ON UPDATE cascade,
     FOREIGN KEY (EquipoID) REFERENCES Equipos(EquipoID)
+    ON DELETE cascade
+    ON UPDATE cascade
 );
 
 

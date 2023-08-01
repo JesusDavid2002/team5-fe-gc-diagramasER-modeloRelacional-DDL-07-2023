@@ -23,6 +23,8 @@ CREATE TABLE Responsable (
     DNI_trabajadores VARCHAR(9),
     PRIMARY KEY (DNI),
     FOREIGN KEY (DNI_trabajadores) REFERENCES Trabajadores(DNI)
+    ON DELETE cascade
+    ON UPDATE cascade
 );
 
 CREATE TABLE Departamento (
@@ -31,6 +33,8 @@ CREATE TABLE Departamento (
     DNI_trabajador VARCHAR(9),
     PRIMARY KEY (codigo_departamento),
     FOREIGN KEY (DNI_trabajador) REFERENCES Trabajadores(DNI)
+    ON DELETE cascade
+    ON UPDATE cascade
 );
 
 CREATE TABLE Contratos (
@@ -40,6 +44,8 @@ CREATE TABLE Contratos (
     DNI_trabajador VARCHAR(9),
     PRIMARY KEY (codigo_contrato),
     FOREIGN KEY (DNI_trabajador) REFERENCES Trabajadores(DNI)
+    ON DELETE cascade
+    ON UPDATE cascade
 );
 
 CREATE TABLE CategoriaProfesional (
@@ -48,6 +54,8 @@ CREATE TABLE CategoriaProfesional (
     DNI_trabajador VARCHAR(9),
     PRIMARY KEY (codigo_categoria_profesional),
     FOREIGN KEY (DNI_trabajador) REFERENCES Trabajadores(DNI)
+    ON DELETE cascade
+    ON UPDATE cascade
 );
 
 CREATE TABLE Nominas (
@@ -58,6 +66,8 @@ CREATE TABLE Nominas (
     DNI_trabajador VARCHAR(9),
     PRIMARY KEY (id_nomina),
     FOREIGN KEY (DNI_trabajador) REFERENCES Trabajadores(DNI)
+    ON DELETE cascade
+    ON UPDATE cascade
 );
 
 

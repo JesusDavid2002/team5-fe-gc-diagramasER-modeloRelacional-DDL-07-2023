@@ -15,6 +15,8 @@ CREATE TABLE Bandos (
     GuerraID INT,
     PRIMARY KEY (BandosID),
     FOREIGN KEY (GuerraID) REFERENCES Guerras(GuerraID)
+    ON DELETE cascade
+    ON UPDATE cascade
 );
 
 CREATE TABLE Paises (
@@ -24,6 +26,8 @@ CREATE TABLE Paises (
     BandosID INT,
     PRIMARY KEY (nombre),
     FOREIGN KEY (BandosID) REFERENCES Bandos(BandosID)
+    ON DELETE cascade
+    ON UPDATE cascade
 );
 
 -- DML

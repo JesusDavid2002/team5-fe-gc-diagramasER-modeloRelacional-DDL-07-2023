@@ -10,6 +10,8 @@ CREATE TABLE Usuarios (
     userID_2 INT,
     PRIMARY KEY (userID),
     FOREIGN KEY (userID_2) REFERENCES Usuarios(userID)
+    ON DELETE cascade
+    ON UPDATE cascade
 );
 
 CREATE TABLE Mensajes (
@@ -20,6 +22,8 @@ CREATE TABLE Mensajes (
     userID INT,
     PRIMARY KEY (mensajeID),
     FOREIGN KEY (userID) REFERENCES Usuarios(userID)
+    ON DELETE cascade
+    ON UPDATE cascade
 );
 
 CREATE TABLE Favoritos (
@@ -29,8 +33,12 @@ CREATE TABLE Favoritos (
     mensajeID INT,
     userID INT,
     PRIMARY KEY (favoritoID),
-    FOREIGN KEY (mensajeID) REFERENCES Mensajes(mensajeID),
+    FOREIGN KEY (mensajeID) REFERENCES Mensajes(mensajeID)
+    ON DELETE cascade
+    ON UPDATE cascade,
     FOREIGN KEY (userID) REFERENCES Usuarios(userID)
+    ON DELETE cascade
+    ON UPDATE cascade
 );
 
 CREATE TABLE Retweets (
@@ -40,8 +48,12 @@ CREATE TABLE Retweets (
     mensajeID INT,
     userID INT,
     PRIMARY KEY (retweetID),
-    FOREIGN KEY (mensajeID) REFERENCES Mensajes(mensajeID),
+    FOREIGN KEY (mensajeID) REFERENCES Mensajes(mensajeID)
+    ON DELETE cascade
+    ON UPDATE cascade,
     FOREIGN KEY (userID) REFERENCES Usuarios(userID)
+    ON DELETE cascade
+    ON UPDATE cascade
 );
 
 
