@@ -2,7 +2,7 @@
 
 CREATE DATABASE ejercicio03;
 USE ejercicio03;
--- DROP DATABASE ejercicio03;
+
 CREATE TABLE comunidades_autonomas(
     nombre varchar(30),
     poblacion int,
