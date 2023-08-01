@@ -100,61 +100,39 @@ CREATE TABLE Estanteria_ingrediente (
 
 -- DML
 
--- Insertando datos en la tabla Empleados
-INSERT INTO Empleados(DNI, num_seguiridad_social, nombre, apellidos, telefono_fijo, telefono_movil)
-VALUES 
-    ('12345678A', '111222333', 'Juan', 'Perez', '912345678', '612345678'),
-    ('23456789B', '222333444', 'Ana', 'Lopez', '913456789', '623456789');
+-- Insertar
+INSERT INTO Empleados (DNI, num_seguiridad_social, nombre, apellidos, telefono_fijo, telefono_movil)
+VALUES ('12345678Z', '111111111111', 'Juan', 'Pérez', '911111111', '611111111');
 
--- Insertando datos en la tabla Almacenes
-INSERT INTO Almacenes(almacenID, nombre, numero, descripcion)
-VALUES 
-    (1, 'Almacen Central', 100, 'Almacen principal de la empresa'),
-    (2, 'Almacen Secundario', 200, 'Almacen secundario de la empresa');
+INSERT INTO Almacenes (almacenID, nombre, numero, descripcion)
+VALUES (1, 'Almacén Central', 1, 'Almacén principal en Madrid');
 
--- Insertando datos en la tabla Cocineros
-INSERT INTO Cocineros(ID_cocinero, DNI_empleados, años_servicio)
-VALUES 
-    (1, '12345678A', 10),
-    (2, '23456789B', 5);
+INSERT INTO Cocineros (ID_cocinero, DNI_empleados, años_servicio)
+VALUES (1, '12345678Z', 5);
 
--- Insertando datos en la tabla Pinches
-INSERT INTO Pinches(ID_pinches, DNI_empleados, fecha_nacimiento, ID_cocinero)
-VALUES 
-    (1, '12345678A', '1990-01-01', 1),
-    (2, '23456789B', '1995-01-01', 2);
+INSERT INTO Pinches (ID_pinches, DNI_empleados, fecha_nacimiento, ID_cocinero)
+VALUES (1, '12345678Z', '2000-01-01', 1);
 
--- Insertando datos en la tabla Platos
-INSERT INTO Platos(platoID, nombre_plato, precio, tipo_plato)
-VALUES 
-    (1, 'Paella', 15.0, 'Arroz'),
-    (2, 'Tortilla de patatas', 10.0, 'Tapa');
+INSERT INTO Platos (platoID, nombre_plato, precio, tipo_plato)
+VALUES (1, 'Paella', 15.0, 'Arroces');
 
--- Insertando datos en la tabla Ingredientes
-INSERT INTO Ingredientes(ingredientesID, nombre, cantidad, platoID)
-VALUES 
-    (1, 'Arroz', 500, 1),
-    (2, 'Pollo', 200, 1),
-    (3, 'Huevos', 6, 2),
-    (4, 'Patatas', 500, 2);
+INSERT INTO Ingredientes (ingredientesID, nombre, cantidad, platoID)
+VALUES (1, 'Arroz', 200, 1);
 
--- Insertando datos en la tabla Estanterias
-INSERT INTO Estanterias(estanteriaID, letras_identificacion, tamaño_cm, num_ingredientes, almacenID)
-VALUES 
-    (1, 'A1', 200, 10, 1),
-    (2, 'B1', 150, 8, 2);
+INSERT INTO Estanterias (estanteriaID, letras_identificacion, tamaño_cm, num_ingredientes, almacenID)
+VALUES (1, 'A1', 200, 100, 1);
 
--- Insertando datos en la tabla Preparar_platos
-INSERT INTO Preparar_platos(ID_cocinero, platoID)
-VALUES 
-    (1, 1),
-    (2, 2);
+INSERT INTO Preparar_platos (ID_cocinero, platoID)
+VALUES (1, 1);
 
--- Insertando datos en la tabla Estanteria_ingrediente
-INSERT INTO Estanteria_ingrediente(ingredientesID, estanteriaID)
-VALUES 
-    (1, 1),
-    (2, 1),
-    (3, 2),
-    (4, 2);
+INSERT INTO Estanteria_ingrediente (ingredientesID, estanteriaID)
+VALUES (1, 1);
 
+-- Actualizar
+UPDATE Empleados 
+SET telefono_fijo = '912222222', telefono_movil = '612222222'
+WHERE DNI = '12345678Z';
+
+-- Eliminar
+DELETE FROM Empleados 
+WHERE DNI = '12345678Z';

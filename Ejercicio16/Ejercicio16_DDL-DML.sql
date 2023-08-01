@@ -60,26 +60,51 @@ CREATE TABLE Retweets (
 -- DML
 
 
--- Insertando datos en la tabla Usuarios
+-- Insertar
 INSERT INTO Usuarios(userID, nombre, correo_electronico, telefono, foto_perfil, userID_2)
 VALUES 
-    (1, 'Juan Perez', 'juan@example.com', '600123456', NULL, NULL),
-    (2, 'Maria Lopez', 'maria@example.com', '600789456', NULL, 1);
+    (1, 'Juan', 'juan@gmail.com', '612345678', NULL, NULL),
+    (2, 'Maria', 'maria@gmail.com', '623456789', NULL, 1);
 
--- Insertando datos en la tabla Mensajes
 INSERT INTO Mensajes(mensajeID, contenido, fecha_publicacion, hora_publicacion, userID)
 VALUES 
-    (1, 'Hola, este es mi primer mensaje', '2023-08-01', '10:00:00', 1),
-    (2, 'Este es otro mensaje', '2023-08-02', '10:30:00', 2);
+    (1, 'Hola mundo!', '2023-08-01', '10:30:00', 1),
+    (2, 'Bienvenidos a mi perfil', '2023-08-01', '11:00:00', 2);
 
--- Insertando datos en la tabla Favoritos
 INSERT INTO Favoritos(favoritoID, fecha, hora, mensajeID, userID)
 VALUES 
-    (1, '2023-08-02', '11:00:00', 1, 2),
-    (2, '2023-08-03', '09:00:00', 2, 1);
+    (1, '2023-08-01', '12:00:00', 2, 1);
 
--- Insertando datos en la tabla Retweets
 INSERT INTO Retweets(retweetID, fecha, hora, mensajeID, userID)
 VALUES 
-    (1, '2023-08-02', '12:00:00', 1, 2),
-    (2, '2023-08-03', '10:00:00', 2, 1);
+    (1, '2023-08-01', '13:00:00', 1, 2);
+
+-- Actualizar
+UPDATE Usuarios
+SET nombre = 'Carlos', correo_electronico = 'carlos@gmail.com'
+WHERE userID = 1;
+
+UPDATE Mensajes
+SET contenido = 'Actualizando mi primer mensaje', hora_publicacion = '14:00:00'
+WHERE mensajeID = 1;
+
+UPDATE Favoritos
+SET fecha = '2023-08-02', hora = '10:00:00'
+WHERE favoritoID = 1;
+
+UPDATE Retweets
+SET fecha = '2023-08-02', hora = '11:00:00'
+WHERE retweetID = 1;
+
+-- Eliminar
+DELETE FROM Usuarios
+WHERE userID = 2;
+
+DELETE FROM Mensajes
+WHERE mensajeID = 2;
+
+DELETE FROM Favoritos
+WHERE favoritoID = 1;
+
+DELETE FROM Retweets
+WHERE retweetID = 1;

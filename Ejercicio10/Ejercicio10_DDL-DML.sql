@@ -70,21 +70,17 @@ CREATE TABLE JugarPartidos (
 
 -- DML
 
--- Insertando datos en la tabla LigasFutbol
-INSERT INTO LigasFutbol(LigaID, nombre, fecha_inicio, fecha_final)
+-- Insertar
+INSERT INTO LigasFutbol(LigaID, nombre, fecha_inicio, fecha_final) 
 VALUES 
-    (1, 'La Liga', '2023-08-20', '2024-05-20'),
-    (2, 'Premier League', '2023-08-10', '2024-05-10');
+    (1, 'LaLiga', '2023-08-01', '2024-05-31');
 
--- Insertando datos en la tabla Equipos
-INSERT INTO Equipos(EquipoID, nombre, localidad)
+INSERT INTO Equipos(EquipoID, nombre, localidad) 
 VALUES 
-    (1, 'FC Barcelona', 'Barcelona'),
-    (2, 'Real Madrid', 'Madrid'),
-    (3, 'Manchester United', 'Manchester'),
-    (4, 'Chelsea FC', 'London');
+    (1, 'Real Madrid', 'Madrid'),
+    (2, 'Barcelona', 'Barcelona');
 
--- Insertando datos en la tabla Jugadores
+
 INSERT INTO Jugadores(DNI, nombre, apellidos, dorsal, fecha_nacimiento, nacionalidad, posición, EquipoID)
 VALUES 
     ('12345678A', 'Ansu', 'Fati', 10, '1987-06-24', 'Argentina', 'Delantero', 1),
@@ -99,3 +95,25 @@ VALUES
     ('89012345F', 'Carlo', 'Ancelotti', '1972-06-23', 2),
     ('90123456G', 'Ole Gunnar', 'Solskjær', '1973-02-26', 3),
     ('01234567H', 'Thomas', 'Tuchel', '1973-08-29', 4);
+    
+INSERT INTO JugarPartidos(PartidoID, EquipoID)
+VALUES 
+    (1, 1),
+    (1, 2);
+
+-- Actualizar
+UPDATE Jugadores 
+SET dorsal = 11 
+WHERE DNI = '12345678A';
+
+UPDATE Partidos 
+SET goles_local = 2 
+WHERE PartidoID = 1;
+
+
+-- Eliminar
+DELETE FROM Entrenadores
+WHERE DNI = '89012345F';
+
+DELETE FROM JugarPartidos
+WHERE PartidoID = 1 AND EquipoID = 2;

@@ -99,50 +99,65 @@ CREATE TABLE Aulas_asignaturas_horarios (
 -- DML
 
 
--- Insertando datos en la tabla Asignaturas
+-- Inserción de datos
+
 INSERT INTO Asignaturas(codigo_interno, nombre, codigo_europeo, codigo_interno_asignatura)
-VALUES 
-    (101, 'Matemáticas', 'EU101', NULL),
-    (102, 'Física', 'EU102', 101);
+VALUES (1, 'Matemáticas', 'EU001', NULL);
 
--- Insertando datos en la tabla Profesores
 INSERT INTO Profesores(dni, nombre, direccion, telefono, email, num_seguridad_social, codigo_interno, años_antiguedad, esTutor, tiempo_tutor, codigo_interno_asignatura)
-VALUES 
-    ('12345678A', 'Juan Perez', 'Calle Ejemplo, 1', '600123456', 'juan@example.com', '1234567890', 5, 10, TRUE, 2, 101),
-    ('87654321B', 'Maria Lopez', 'Avenida Ejemplo, 2', '600789456', 'maria@example.com', '0987654321', 7, 8, FALSE, 0, 102);
+VALUES ('12345678A', 'Juan Pérez', 'Calle Falsa 123', '600123456', 'juan@example.com', '123456789', 1, 10, TRUE, 5, 1);
 
--- Insertando datos en la tabla Ciclos
 INSERT INTO Ciclos(codigo_interno, grado, nombre)
-VALUES 
-    (1, 'Grado Superior', 'Informática'),
-    (2, 'Grado Medio', 'Administración');
+VALUES (1, 'Grado en Matemáticas', 'Matemáticas');
 
--- Insertando datos en la tabla Cursos
 INSERT INTO Cursos(id_curso, dni, codigo_interno_curso)
-VALUES 
-    (1, '12345678A', 1),
-    (2, '87654321B', 2);
+VALUES (1, '12345678A', 1);
 
--- Insertando datos en la tabla Ciclos_asignaturas
 INSERT INTO Ciclos_asignaturas(codigo_interno_asignatura, codigo_interno_ciclo)
-VALUES 
-    (101, 1),
-    (102, 2);
+VALUES (1, 1);
 
--- Insertando datos en la tabla Horarios
 INSERT INTO Horarios(id_horario, hora, dia_semana)
-VALUES 
-    (1, '08:00:00', 'Lunes'),
-    (2, '10:00:00', 'Martes');
+VALUES (1, '10:00:00', 'Lunes');
 
--- Insertando datos en la tabla Aulas
 INSERT INTO Aulas(nombre, numero, codigo_aula, metros)
-VALUES 
-    ('Aula 101', 101, 1, 40),
-    ('Aula 102', 102, 2, 50);
+VALUES ('Aula 101', 101, 1, 50);
 
--- Insertando datos en la tabla Aulas_asignaturas_horarios
 INSERT INTO Aulas_asignaturas_horarios(codigo_interno_asignatura, id_horario, nombre_aula, numero_aula)
-VALUES 
-    (101, 1, 'Aula 101', 101),
-    (102, 2, 'Aula 102', 102);
+VALUES (1, 1, 'Aula 101', 101);
+
+-- Actualización de datos
+
+UPDATE Profesores
+SET años_antiguedad = 11
+WHERE dni = '12345678A';
+
+UPDATE Asignaturas
+SET nombre = 'Matemáticas Avanzadas'
+WHERE codigo_interno = 1;
+
+-- Eliminación de datos
+
+DELETE FROM Aulas_asignaturas_horarios
+WHERE codigo_interno_asignatura = 1 AND id_horario = 1 AND nombre_aula = 'Aula 101' AND numero_aula = 101;
+
+DELETE FROM Aulas
+WHERE nombre = 'Aula 101' AND numero = 101;
+
+DELETE FROM Horarios
+WHERE id_horario = 1;
+
+DELETE FROM Ciclos_asignaturas
+WHERE codigo_interno_asignatura = 1 AND codigo_interno_ciclo = 1;
+
+DELETE FROM Cursos
+WHERE id_curso = 1;
+
+DELETE FROM Ciclos
+WHERE codigo_interno = 1;
+
+DELETE FROM Profesores
+WHERE dni = '12345678A';
+
+DELETE FROM Asignaturas
+WHERE codigo_interno = 1;
+
